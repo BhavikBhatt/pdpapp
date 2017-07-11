@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends "pdp_app/base.html" %}
+{% block body_block %}
+
+  <div class="container">
+    <div class="jumbotron">
+
+        <form enctype="multipart/form-data" method="POST">
+          {% csrf_token %}
+          {{ post_form.as_p }}
+          <input type="submit" name="" value="Publish!">
+        </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}

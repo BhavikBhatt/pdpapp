@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+  </head>
+
+  <body>
+    
+    <nav id="bar" class="navbar navbar-default navbar-static-top">
+   
+        <ul class="nav navbar-nav pull-left">
+
+          <li><a id="ngr" class="navbar-brand" href="{% url 'index' %}">Northrop Grumman PDP</a></li>
+          <li><a id="ngr" class="navbar-link" href="{% url 'pdp_app:posts' %}">Q&A</a></li>
+          
+          {% if user.is_authenticated %}
+              <li><a id="ngr" class="navbar-link" href="{% url 'logout' %}?next={% url 'index' %}">Logout</a></li>
+          {% else %}
+              <li><a id="ngr" class="navbar-link" href="{% url 'pdp_app:register' %}">Register</a></li>
+              <li><a id="ngr" class="navbar-link" href="{% url 'login' %}">Login</a></li>
+          {% endif %}
+    
+        </ul>   
+    </nav>
+
+    <div class="container">
+        {% block body_block %}
+            
+        {% endblock %}
+    </div>
+
+    <div class="footer">
+        <div class="row">
+            <div id="copy" class="col-lg-6">
+                    Bhavik Bhatt 2017
+            </div>
+            <div id="faq" class="col-lg-6">
+                    <a id="qa" href="http://www.northropgrumman.com/Careers/StudentsAndNewGrads/Pages/StudentsNewGradsFAQs.aspx">Student FAQs</a>
+            </div>
+        </div>
+    </div>
+
+  </body>
+
+</html>

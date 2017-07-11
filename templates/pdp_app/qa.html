@@ -1,0 +1,27 @@
+{% extends "pdp_app/base.html" %}
+
+{% block body_block %}
+    <h1>Post List</h1>
+
+    {% if post_list %}
+    <ul>
+
+      {% for post in post_list %}
+      <li>
+        <a href="{{ post.id }}">{{ post.title }}</a> ({{post.author}})
+      </li> 
+      {% endfor %}
+
+    </ul>
+
+    <a href="{% url 'pdp_app:add' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add Post</a>
+
+
+    {% else %}
+
+    <a href="{% url 'pdp_app:add' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add Post</a>
+
+      <p>There are no posts.</p>
+    {% endif %}       
+    
+{% endblock %}

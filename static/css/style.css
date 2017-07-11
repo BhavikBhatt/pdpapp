@@ -1,0 +1,21 @@
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  font-size: 20px;
+}
+
+#faq {
+    text-align: right;
+}
+
+#bar {
+    background-color: #142b51;
+}
+
+#ngr {
+    color: white;
+}
