@@ -7,6 +7,9 @@ from pdp_app.models import Post, Comment
 from pdp_app import forms
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
+from django.shortcuts import get_list_or_404, get_object_or_404
+from django.views.generic.edit import DeleteView
+from django.urls import reverse_lazy
 
 # Create your views here.
 def index(request):
@@ -64,6 +67,40 @@ def add_post(request):
             print(post_form.errors)
     else:
         post_form = forms.PostForm()
-
+    
     return render(request,'pdp_app/add_post.html',
                           {'post_form':post_form })
+
+@login_required
+def add_comment(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+
+    if request.method == 'POST':
+        comment_form = forms.CommentForm(data=request.POST)
+
+        if comment_form.is_valid():
+            
+            comment = comment_form.save(commit=False)
+            comment.post = post
+            comment.save()
+            return HttpResponseRedirect(reverse('pdp_app:posts'))
+        else: 
+            print(comment_form.errors)
+    else:
+        comment_form = forms.CommentForm()
+
+    return render(request,'pdp_app/add_comment.html',
+                          {'comment_form':comment_form, 'post':post})
+
+class PostDelete(DeleteView):
+    model = Post
+    success_url = reverse_lazy('pdp_app:posts')
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.author == request.user:
+            self.object.delete()
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            return HttpResponseRedirect(reverse('pdp_app:posts'))
+    

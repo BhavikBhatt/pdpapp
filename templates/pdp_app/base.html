@@ -27,6 +27,14 @@
         </ul>   
     </nav>
 
+
+    <div >
+          {% if user.is_authenticated %}
+                    <h1 id="hello">Hello, {{user.username}}</h1>
+          {% endif %}
+    </div>
+
+
     <div class="container">
         {% block body_block %}
             
@@ -36,7 +44,7 @@
     <div class="footer">
         <div class="row">
             <div id="copy" class="col-lg-6">
-                    Bhavik Bhatt 2017
+                    <a id="qa" href="https://www.bhavikbhatt.github.io/Personal-Website">Bhavik Bhatt 2017</a>
             </div>
             <div id="faq" class="col-lg-6">
                     <a id="qa" href="http://www.northropgrumman.com/Careers/StudentsAndNewGrads/Pages/StudentsNewGradsFAQs.aspx">Student FAQs</a>

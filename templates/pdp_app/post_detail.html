@@ -1,15 +1,28 @@
 {% extends "pdp_app/base.html" %}
 
 {% block body_block %}
-  <h1>{{ post.title }}</h1>
-  <h3> {{ post.text }} </h3>
-  <p><strong>Author:</strong> {{ post.author }}</p> <!-- author detail link not yet defined -->
 
-  <div style="margin-left:20px;margin-top:20px">
+  <h1>{{ post.title }} <a href="{% url 'pdp_app:removepost' post.id %}" class="btn btn-primary btn-md active" role="button" aria-pressed="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a> </h1>
+  <h3> {{ post.text }} </h3>
+  <p><strong>Author:</strong> {{ post.author }}</p>  <!-- author detail link not yet defined -->
+
+  <div>
     <h4>Comments</h4>
     {% for comment in post.comments.all %}
+    <div style="padding:0px" class="jumbotron">
        <p>{{comment.text }}</p>
-       <p><strong> {{comment.author }} </strong></p>
+       <p style="text-align: right">Author: <strong> {{comment.author }} </strong></p>
+    </div>
     {% endfor %}
   </div>
+
+   <div class="container">
+
+
+       <a href="{% url 'pdp_app:addcomment' post.id %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add Comment</a>
+
+
+  </div>
+
+
 {% endblock %}
