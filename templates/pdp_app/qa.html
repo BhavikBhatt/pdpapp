@@ -19,10 +19,9 @@
 
 
     {% else %}
-
+    <p>There are no posts.</p>
     <a href="{% url 'pdp_app:addpost' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add Post</a>
 
-      <p>There are no posts.</p>
     {% endif %}       
     
 {% endblock %}

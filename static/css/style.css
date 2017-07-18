@@ -1,3 +1,4 @@
+
 .footer {
   position: absolute;
   right: 0;
@@ -7,6 +8,7 @@
   background-color: #efefef;
   font-size: 20px;
 }
+
 
 #faq {
     text-align: right;
@@ -24,4 +26,13 @@
 #comment {
     width:100%;
     height:100%;
+}
+
+html, body {
+
+    background-color: #efefef;
+}
+
+h1 {
+    color:white;
 }

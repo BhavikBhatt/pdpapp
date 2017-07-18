@@ -28,14 +28,14 @@
     </nav>
 
 
-    <div >
+    <div id="hello">
           {% if user.is_authenticated %}
                     <h1 id="hello">Hello, {{user.username}}</h1>
           {% endif %}
     </div>
 
 
-    <div class="container">
+    <div class="container" id="body">
         {% block body_block %}
             
         {% endblock %}

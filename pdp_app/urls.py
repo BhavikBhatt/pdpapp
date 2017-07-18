@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^add_post/', views.add_post, name='addpost'),
     url(r'^add_comment/(?P<pk>\d+)$', views.add_comment, name='addcomment'),
     url(r'^remove_post/(?P<pk>\d+)/$', views.PostDelete.as_view(), name='removepost'),
+    url(r'^state/(?:(?P<state_name>.+)/)?$', views.state, name='state-detail'),
 ]

@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User
-from pdp_app.models import Post, Comment
+from pdp_app.models import Post, Comment, State
 from pdp_app import forms
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
@@ -103,4 +103,9 @@ class PostDelete(DeleteView):
             return HttpResponseRedirect(self.get_success_url())
         else:
             return HttpResponseRedirect(reverse('pdp_app:posts'))
-    
+
+def state(request, state_name):
+    state = get_object_or_404(State, name=state_name)
+
+    return render(request,'pdp_app/state-detail.html',
+                          {'state':state})

@@ -18,6 +18,15 @@ class Comment(models.Model):
     author = models.CharField(max_length=40)
     post = models.ForeignKey(Post, related_name="comments")
 
-    
     def __str__(self):
         return self.text
+
+class State(models.Model):
+    name = models.CharField(max_length=40)
+    numpdp = models.IntegerField()
+    cost = models.FloatField()
+
+    def __str__(self):
+        return self.name
+
+
